@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Secret Verification</title>
+    <style>
+        /* Global Styles */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Roboto', sans-serif;
+            overflow: hidden;
+        }
+
+        /* Loading Screen Styles */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #1b1b1b;
+            z-index: 1000;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            text-shadow: 0 0 5px #f00, 0 0 10px #f00;
+            transition: opacity 0.5s ease;
+        }
+
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        /* Main Page Styles */
+        .container {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #212121;
+            color: #fff;
+            text-align: center;
+        }
+
+        .container h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-shadow: 0 0 5px #fff, 0 0 10px #f00;
+        }
+
+        input {
+            width: 80%;
+            max-width: 400px;
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 5px;
+            border: 2px solid #333;
+            background: #1c1c1c;
+            color: #fff;
+        }
+
+        input::placeholder {
+            color: #777;
+        }
+
+        button {
+            padding: 12px 25px;
+            margin-top: 20px;
+            font-size: 18px;
+            background-color: #e60012;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #c60010;
+            transform: scale(1.05);
+        }
+
+        button:active {
+            background-color: #b4000c;
+            transform: scale(0.95);
+        }
+
+        #message {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div>Loading...</div>
+    </div>
+
+    <!-- Main Page -->
+    <div class="container" id="mainContent">
+        <h1>-.. .. -.. ....... -.-- --- ..- ....... .-.. .. -.- . ....... - .... . ....... ... --- -. --. ..--..</h1>
+        <input type="text" id="userInput" placeholder="Enter the secret code here...">
+        <button onclick="checkInput()">Submit</button>
+        <p id="message"></p>
+    </div>
+
+    <script>
+        // Fake API response simulation
+        const correctCode = 'MNQ NXNCOÇTX BXEB NGAMTNE T E E E I E';
+        const secretMessage = '!hjdh893847';
+        const redirectLink = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ';
+
+        function checkInput() {
+            const userInput = document.getElementById('userInput').value.trim();
+            const messageElement = document.getElementById('message');
+
+            if (userInput === correctCode) {
+                messageElement.textContent = secretMessage;
+            } else {
+                window.location.href = redirectLink;
+            }
+        }
+
+        // Hide loading screen and show main content after 2 seconds
+        setTimeout(() => {
+            document.getElementById('loadingScreen').classList.add('hidden');
+            document.getElementById('mainContent').style.display = 'flex';
+        }, 2000);
+    </script>
+</body>
+</html>
